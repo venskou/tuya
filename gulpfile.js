@@ -28,8 +28,8 @@ const dirs = {
     js: 'src/js/**/*.js',
     images: ['src/images/**/*.{png,jpg,gif}', '!src/images/favicon/**/*.*'],
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
-    favicon: 'src/images/favicon/**/*.*',
     svgSprite: 'src/images/svg/sprite/**/*.svg',
+    favicon: 'src/images/favicon/**/*.*',
     vendors: 'src/vendors/'
   },
   dist: {
@@ -45,9 +45,10 @@ const dirs = {
     html: 'src/*.html',
     styles: 'src/styles/**/*.scss',
     js: 'src/js/**/*.js',
-    images: 'src/images/**/*.{png,jpg,gif}',
-    svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg'],
-    svgSprite: 'src/images/svg/sprite/**/*.svg'
+    images: ['src/images/**/*.{png,jpg,gif}', '!src/images/favicon/**/*.*'],
+    svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
+    svgSprite: 'src/images/svg/sprite/**/*.svg',
+    favicon: 'src/images/favicon/**/*.*',
   },
   clean: ['dist/*']
 };
@@ -248,6 +249,7 @@ function watch() {
   gulp.watch(dirs.watch.images, gulp.series(buildImages, reloadServer));
   gulp.watch(dirs.watch.svg, gulp.series(buildSVG, reloadServer));
   gulp.watch(dirs.watch.svgSprite, gulp.series(buildSVGSprite, reloadServer));
+  gulp.watch(dirs.watch.favicon, gulp.series(copyFavicon, reloadServer));
 }
 
 // Export tasks
