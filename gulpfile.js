@@ -30,6 +30,7 @@ const dirs = {
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
     svgSprite: 'src/images/svg/sprite/**/*.svg',
     favicon: 'src/images/favicon/**/*.*',
+    fonts: 'src/fonts/**/*.*',
     vendors: 'src/vendors/'
   },
   dist: {
@@ -37,8 +38,9 @@ const dirs = {
     styles: 'dist/styles/',
     js: 'dist/js/',
     images: 'dist/images/',
-    favicon: 'dist/images/favicon/',
     svgSprite: 'dist/images/svg/sprite/',
+    favicon: 'dist/images/favicon/',
+    fonts: 'dist/fonts/',
     vendors: 'dist/vendors/'
   },
   watch: {
@@ -49,6 +51,7 @@ const dirs = {
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
     svgSprite: 'src/images/svg/sprite/**/*.svg',
     favicon: 'src/images/favicon/**/*.*',
+    fonts: 'src/fonts/**/*.*',
   },
   clean: ['dist/*']
 };
@@ -241,6 +244,13 @@ function copyVendors(done) {
   done();
 }
 
+// Copy fonts
+function copyFonts(done) {
+  gulp.src(dirs.src.fonts)
+    .pipe(gulp.dest(dirs.dist.fonts));
+  done();
+}
+
 // Watch files
 function watch() {
   gulp.watch(dirs.watch.html, gulp.series(buildHTML, reloadServer));
@@ -250,6 +260,7 @@ function watch() {
   gulp.watch(dirs.watch.svg, gulp.series(buildSVG, reloadServer));
   gulp.watch(dirs.watch.svgSprite, gulp.series(buildSVGSprite, reloadServer));
   gulp.watch(dirs.watch.favicon, gulp.series(copyFavicon, reloadServer));
+  gulp.watch(dirs.watch.fonts, gulp.series(copyFonts, reloadServer));
 }
 
 // Export tasks
@@ -264,7 +275,7 @@ exports.copyFavicon = copyFavicon;
 exports.buildSVG = buildSVG;
 exports.buildSVGSprite = buildSVGSprite;
 exports.copyVendors = copyVendors;
-const build = gulp.series(clean, copyVendors, gulp.parallel(buildHTML, buildStyles, buildJS, buildImages, copyFavicon, buildSVG, buildSVGSprite));
+const build = gulp.series(clean, copyVendors, gulp.parallel(buildHTML, buildStyles, buildJS, buildImages, copyFavicon, copyFonts, buildSVG, buildSVGSprite));
 exports.build = build;
 
 // Default task
