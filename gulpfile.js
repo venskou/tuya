@@ -24,7 +24,7 @@ const babel = require('gulp-babel');
 const dirs = {
   src: {
     html: 'src/*.html',
-    styles: 'src/styles/styles.scss',
+    styles: ['src/styles/*.scss','src/styles/vendors/**/*.scss'],
     js: 'src/js/**/*.js',
     images: ['src/images/**/*.{png,jpg,gif}', '!src/images/favicon/**/*.*'],
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
@@ -45,7 +45,7 @@ const dirs = {
   },
   watch: {
     html: 'src/*.html',
-    styles: 'src/styles/**/*.scss',
+    styles: ['src/styles/*.scss','src/styles/vendors/**/*.scss'],
     js: 'src/js/**/*.js',
     images: ['src/images/**/*.{png,jpg,gif}', '!src/images/favicon/**/*.*'],
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
