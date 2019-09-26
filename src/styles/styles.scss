@@ -2,6 +2,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'functions';
+@import 'fonts';
 
 *,
 *::before,
@@ -11,14 +12,21 @@
 
 html {
   height: 100%;
+  font-size: $font-size-base;
+
+  @media (max-width: $lg-max-width) {
+    font-size: 16px;
+  }
+  @media (max-width: $sm-max-width) {
+    font-size: 14px;
+  }
 }
 
 body {
   font-family: $font-family-base;
-  font-size: $font-size-base;
   line-height: $line-height-base;
   font-style: normal;
-  color: $darken-gray;
+  color: $black;
   overflow-x: hidden;
   min-width: $body-min-width;
 }
