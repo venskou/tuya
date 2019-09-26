@@ -1,4 +1,4 @@
 // Convert pixels to rem
-@function rem($px, $root-font-size: $font-size-base) {
-  @return #{$px/$root-font-size}rem;
+@function rem($px, $divider: $rem-base) {
+  @return #{$px/$divider}rem;
 }
