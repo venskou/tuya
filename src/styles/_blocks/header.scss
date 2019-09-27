@@ -1,0 +1,22 @@
+.header {
+  padding-top: rem(60);
+
+  &__nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: rem(6);
+  }
+
+  &__contacts {
+    margin-top: rem(10);
+    justify-content: flex-end;
+  }
+
+
+
+  &__logo {
+    margin-right: auto;
+  }
+}
