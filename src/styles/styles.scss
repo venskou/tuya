@@ -14,12 +14,8 @@ html {
   height: 100%;
   font-size: $font-size-base;
 
-  @media (max-width: $lg-max-width) {
+  @media (max-width: $md-max-width) {
     font-size: 16px;
-  }
-
-  @media (max-width: $sm-max-width) {
-    font-size: 14px;
   }
 }
 
@@ -28,8 +24,21 @@ body {
   line-height: $line-height-base;
   font-style: normal;
   color: $black;
+  background-color: $gray-light;
   overflow-x: hidden;
   min-width: $body-min-width;
+}
+
+a {
+  transition: color 0.2s;
+  text-decoration: none;
+  color: $light-blue;
+  font-size: inherit;
+
+  &:hover,
+  &:focus {
+    color: $green;
+  }
 }
 
 .container-fluid {
