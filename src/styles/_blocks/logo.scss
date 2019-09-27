@@ -1,0 +1,22 @@
+.logo {
+  display: block;
+  color: $dark-blue;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+  }
+
+  &__img {
+    display: block;
+    width: 171px;
+    height: 31px;
+  }
+
+  &__sub-text {
+    font-size: rem(12);
+    font-style: italic;
+    margin-left: 61px;
+    color: $dark-blue;
+  }
+}
