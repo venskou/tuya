@@ -1,0 +1,230 @@
+.nav {
+  position: relative;
+
+  &--active {
+    .nav__container {
+      display: block;
+    }
+  }
+
+  &__toggle {
+    display: none;
+    position: absolute;
+    top: 6px;
+    right: 0;
+    z-index: 15;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    padding-top: 7px;
+    cursor: pointer;
+
+    @media (max-width: $sm-max-width) {
+      display: block;
+    }
+
+    &--active {
+      .nav__toggle-box-inner {
+        transform: rotate(45deg);
+        transition: transform 0.075s cubic-bezier(0.215, 0.61, 0.355,1) 0.12s;
+
+        &::before {
+          top: 0;
+          transition: top 0.075s ease, opacity 0.075s ease 0.12s;
+          opacity: 0;
+        }
+
+        &::after {
+          bottom: 0;
+          transition: bottom 0.075s ease, transform 0.075s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+
+  &__toggle-text {
+    @include visually-hidden();
+  }
+
+  &__toggle-box {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 18px;
+  }
+
+  &__toggle-box-inner {
+    position: absolute;
+    display: block;
+    top: 50%;
+    margin-top: -1px;
+    width: 30px;
+    height: 3px;
+    background-color: $green;
+    border-radius: 3px;
+    transition: transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 30px;
+      height: 3px;
+      border-radius: 3px;
+      background-color: $green;
+      transition: transform 0.15s ease;
+    }
+
+    &::before {
+      top: -8px;
+      transition: top 0.075s ease 0.12s, opacity 0.75s ease;
+    }
+
+    &::after {
+      bottom: -8px;
+      transition: bottom 0.075s ease 0.12s, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    }
+  }
+
+  &__title {
+    display: none;
+    font-size: rem(16);
+    font-weight: 700;
+    color: $green;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: rem(5);
+    padding-top: rem(15);
+    padding-left: rem(35);
+    padding-right: rem(35);
+
+    @media (max-width: $sm-max-width) {
+      display: block;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: rem(16);
+    align-items: baseline;
+
+    @media (max-width: $sm-max-width) {
+      display: none;
+      position: absolute;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: $white;
+      box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      z-index: 10;
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    @media (max-width: $sm-max-width) {
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    margin-right: rem(41);
+    white-space: nowrap;
+
+    @media (max-width: $md-max-width) {
+      margin-right: rem(16);
+    }
+
+    @media (max-width: $sm-max-width) {
+      margin-right: 0;
+      border-bottom: 1px solid rgba($dark-blue, 0.1);
+    }
+  }
+
+  &__icon {
+    width: rem(30);
+    height: rem(30);
+    transition: fill 0.2s;
+    display: none;
+
+    @media (max-width: $sm-max-width) {
+      display: inline-block;
+      margin-right: rem(10);
+    }
+  }
+
+  &__link {
+    line-height: 1;
+    position: relative;
+    padding-top: rem(10);
+    padding-bottom: rem(10);
+    color: $dark-blue;
+    display: inline-flex;
+    align-items: center;
+
+    &:hover,
+    &:focus {
+      .nav__icon {
+        fill: $green;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: rem(2);
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: $green;
+
+      @media (max-width: $sm-max-width) {
+        display: none;
+      }
+    }
+
+    @media (max-width: $sm-max-width) {
+      width: 100%;
+      line-height: 1;
+      padding-left: rem(35);
+      padding-right: rem(35);
+      font-size: rem(16);
+    }
+
+    &--actions {
+      &::before {
+        bottom: rem(4);
+        width: rem(49);
+      }
+    }
+  }
+
+  &__badge {
+    margin-left: rem(5);
+  }
+
+  &__controls {
+    @media (max-width: $sm-max-width) {
+      padding-top: rem(21);
+      padding-bottom: rem(21);
+      padding-left: rem(35);
+      padding-right: rem(35);
+      background-color: $gray-light;
+    }
+  }
+}
