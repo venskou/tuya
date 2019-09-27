@@ -1,0 +1,21 @@
+.btn {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: rem(12);
+  line-height: 1;
+  border: none;
+  border-radius: 3px;
+  padding-top: rem(13);
+  padding-bottom: rem(12);
+  padding-left: rem(20);
+  padding-right: rem(20);
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--green {
+    color: $white;
+    background-color: #7bb959;
+    background-image: linear-gradient(to top, rgba($dark-green, 0.42) 0%, rgba($light-green, 0.42) 100%);
+  }
+}
