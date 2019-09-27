@@ -1,0 +1,32 @@
+.contacts {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: $gray-dark;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media (max-width: $xs-max-width) {
+    flex-direction: column;
+  }
+
+  &__item {
+    margin-right: rem(15);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    font-weight: 700;
+    color: $black;
+
+    &:hover,
+    &:focus {
+      color: $green;
+    }
+  }
+}
