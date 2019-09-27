@@ -1,0 +1,28 @@
+.badge {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+
+  &--bold {
+    font-weight: 700;
+  }
+
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
+  &--xs {
+    font-size: rem(9);
+    letter-spacing: 0.9px;
+    border-radius: 3px;
+    padding-top: rem(6);
+    padding-bottom: rem(3);
+    padding-left: rem(6);
+    padding-right: rem(6);
+    background-color: $green;
+    color: $white;
+  }
+}
