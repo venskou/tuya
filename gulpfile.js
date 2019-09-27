@@ -95,8 +95,8 @@ function buildHTML(done) {
 }
 
 // Build styles
-function buildStyles(done) {
-  gulp.src(dirs.src.styles)
+function buildStyles() {
+  return gulp.src(dirs.src.styles)
     .pipe(plumber())
     .pipe(sass({
       outputStyle: 'expanded',
@@ -112,7 +112,6 @@ function buildStyles(done) {
       extname: '.css',
     }))
     .pipe(gulp.dest(dirs.dist.styles));
-  done();
 }
 
 // Build JS
