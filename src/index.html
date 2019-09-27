@@ -19,7 +19,85 @@
   <link rel="stylesheet" href="/styles/styles.min.css">
 </head>
 <body>
-
+  <header class="header">
+    <div class="container-fluid">
+      <nav class="header__nav nav">
+          <a href="#" class="header__logo logo">
+            <img class="logo__img" src="/images/logo.png" alt="Логотип Tuya.by">
+            <span class="logo__sub-text">Продажа туй с доставкой</span>
+          </a>
+          <button class="nav__toggle">
+            <span class="nav__toggle-text">Открыть меню</span>
+            <span class="nav__toggle-box">
+              <span class="nav__toggle-box-inner"></span>
+            </span>
+          </button>
+          <div class="nav__container">
+            <p class="nav__title">Меню</p>
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="#" class="nav__link nav__link--actions">
+                  <svg class="nav__icon">
+                    <use xlink:href="/images/svg/sprite/sprite.svg#gift-icon"></use>
+                  </svg>
+                  Акции
+                  <span class="nav__badge badge badge--xs badge--bold badge--uppercase">Горячее</span>
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link">
+                  <svg class="nav__icon">
+                    <use xlink:href="/images/svg/sprite/sprite.svg#cart-icon"></use>
+                  </svg>
+                  Купить
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link">
+                  <svg class="nav__icon">
+                    <use xlink:href="/images/svg/sprite/sprite.svg#delivery-icon"></use>
+                  </svg>
+                  Доставка
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link">
+                  <svg class="nav__icon">
+                    <use xlink:href="/images/svg/sprite/sprite.svg#command-icon"></use>
+                  </svg>
+                  Кто мы
+                </a>
+              </li>
+              <li class="nav__item">
+                <a href="#" class="nav__link">
+                  <svg class="nav__icon">
+                    <use xlink:href="/images/svg/sprite/sprite.svg#blog-icon"></use>
+                  </svg>
+                  Как растить
+                </a>
+              </li>
+            </ul>
+            <div class="nav__controls">
+              <button class="btn btn--green">Онлайн чат</button>
+            </div>
+          </div>
+        </nav>
+      <ul class="header__contacts contacts">
+        <li class="contacts__item">
+          <span class="contacts__name">Телефон:</span>
+          <a href="tel:+375290000000" class="contacts__link">+375 29 6244688</a>
+        </li>
+        <li class="contacts__item">
+          <span class="contacts__name">Телеграм:</span>
+          <a href="https://t.me/tuyaby" target="_blank" class="contacts__link">@tuyaby</a>
+        </li>
+        <li class="contacts__item">
+          <span class="contacts__name">Почта:</span>
+          <a href="mailto:info@tuya.by" class="contacts__link">info@tuya.by</a>
+        </li>
+      </ul>
+    </div>
+  </header>
 <script src="/vendors/svg4everybody/dist/svg4everybody.min.js"></script>
 <script src="/js/main.min.js"></script>
 </body>
