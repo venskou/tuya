@@ -26,7 +26,7 @@
     &--active {
       .nav__toggle-box-inner {
         transform: rotate(45deg);
-        transition: transform 0.075s cubic-bezier(0.215, 0.61, 0.355,1) 0.12s;
+        transition: transform 0.075s cubic-bezier(0.215, 0.61, 0.355, 1) 0.12s;
 
         &::before {
           top: 0;
@@ -120,7 +120,8 @@
       left: 0;
       right: 0;
       background-color: $white;
-      box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15), 0 5px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 50px 100px rgba(50, 50, 93, 0.1), 0 15px 35px rgba(50, 50, 93, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.1);
       border-radius: 4px;
       z-index: 10;
       flex-direction: column;

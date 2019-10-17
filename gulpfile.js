@@ -24,14 +24,14 @@ const babel = require('gulp-babel');
 const dirs = {
   src: {
     html: 'src/*.html',
-    styles: ['src/styles/styles.scss','src/styles/vendors/**/*.scss'],
+    styles: ['src/styles/styles.scss', 'src/styles/vendors/**/*.scss'],
     js: 'src/js/**/*.js',
     images: ['src/images/**/*.{png,jpg,gif}', '!src/images/favicon/**/*.*'],
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
     svgSprite: 'src/images/svg/sprite/**/*.svg',
     favicon: 'src/images/favicon/**/*.*',
     fonts: 'src/fonts/**/*.*',
-    vendors: 'src/vendors/'
+    vendors: 'src/vendors/',
   },
   dist: {
     html: 'dist/',
@@ -41,11 +41,11 @@ const dirs = {
     svgSprite: 'dist/images/svg/sprite/',
     favicon: 'dist/images/favicon/',
     fonts: 'dist/fonts/',
-    vendors: 'dist/vendors/'
+    vendors: 'dist/vendors/',
   },
   watch: {
     html: 'src/*.html',
-    styles: ['src/styles/**/*.scss','src/styles/vendors/**/*.scss'],
+    styles: ['src/styles/**/*.scss', 'src/styles/vendors/**/*.scss'],
     js: 'src/js/**/*.js',
     images: ['src/images/**/*.{png,jpg,gif}', '!src/images/favicon/**/*.*'],
     svg: ['src/images/**/*.svg', '!src/images/svg/sprite/**/*.svg', '!src/images/favicon/**/*.*'],
@@ -53,7 +53,7 @@ const dirs = {
     favicon: 'src/images/favicon/**/*.*',
     fonts: 'src/fonts/**/*.*',
   },
-  clean: ['dist/*']
+  clean: ['dist/*'],
 };
 
 // Local Server
@@ -77,17 +77,19 @@ function reloadServer(done) {
 
 // Clean dist folder
 function clean() {
-  return gulp.src(dirs.clean)
-    .pipe(rimraf());
+  return gulp.src(dirs.clean).pipe(rimraf());
 }
 
 // Build HTML
 function buildHTML(done) {
-  gulp.src(dirs.src.html)
-    .pipe(prettyHtml({
-      indent_size: 2,
-      extra_liners: [],
-    }))
+  gulp
+    .src(dirs.src.html)
+    .pipe(
+      prettyHtml({
+        indent_size: 2,
+        extra_liners: [],
+      })
+    )
     .pipe(htmlhint('.htmlhintrc'))
     .pipe(htmlhint.reporter())
     .pipe(gulp.dest(dirs.dist.html));
@@ -96,140 +98,182 @@ function buildHTML(done) {
 
 // Build styles
 function buildStyles() {
-  return gulp.src(dirs.src.styles)
+  return gulp
+    .src(dirs.src.styles)
     .pipe(plumber())
-    .pipe(sass({
-      outputStyle: 'expanded',
-      indentWidth: 2
-    }))
-    .pipe(autoprefixer({
-      cascade: true
-    }))
+    .pipe(
+      sass({
+        outputStyle: 'expanded',
+        indentWidth: 2,
+      })
+    )
+    .pipe(
+      autoprefixer({
+        cascade: true,
+      })
+    )
     .pipe(gulp.dest(dirs.dist.styles))
     .pipe(cssnano())
-    .pipe(rename({
-      suffix: '.min',
-      extname: '.css',
-    }))
+    .pipe(
+      rename({
+        suffix: '.min',
+        extname: '.css',
+      })
+    )
     .pipe(gulp.dest(dirs.dist.styles));
 }
 
 // Build JS
 function buildJS(done) {
-  gulp.src(dirs.src.js)
+  gulp
+    .src(dirs.src.js)
     .pipe(plumber())
-    .pipe(babel({
-      presets: ['@babel/env']
-    }))
+    .pipe(
+      babel({
+        presets: ['@babel/env'],
+      })
+    )
     .pipe(gulp.dest(dirs.dist.js))
     .pipe(uglify())
-    .pipe(rename({
-      suffix: '.min',
-      extname: '.js'
-    }))
+    .pipe(
+      rename({
+        suffix: '.min',
+        extname: '.js',
+      })
+    )
     .pipe(gulp.dest(dirs.dist.js));
   done();
 }
 
 // Build images
 function buildImages(done) {
-  gulp.src(dirs.src.images)
-    .pipe(imagemin([
-      imagemin.optipng({
-        optimizationLevel: 3
-      }),
-      imagemin.jpegtran({
-        progressive: true
-      })
-    ]))
+  gulp
+    .src(dirs.src.images)
+    .pipe(
+      imagemin([
+        imagemin.optipng({
+          optimizationLevel: 3,
+        }),
+        imagemin.jpegtran({
+          progressive: true,
+        }),
+      ])
+    )
     .pipe(gulp.dest(dirs.dist.images));
   done();
 }
 
 // Copy favicon
 function copyFavicon(done) {
-  gulp.src(dirs.src.favicon)
-    .pipe(gulp.dest(dirs.dist.favicon));
+  gulp.src(dirs.src.favicon).pipe(gulp.dest(dirs.dist.favicon));
   done();
 }
 
 // Build SVG
 function buildSVG(done) {
-  gulp.src(dirs.src.svg)
-    .pipe(svgmin(function() {
-      return {
-        plugins: [{
-          removeDoctype: true
-        }, {
-          removeComments: true
-        }, {
-          removeViewBox: false
-        }, {
-          cleanupNumericValues: {
-            floatPrecision: 2
-          }
-        }, {
-          convertColors: {
-            names2hex: true,
-            rgb2hex: true
-          }
-        }, {
-          cleanupIDs: {
-            minify: true
-          }
-        }]
-      }
-    }))
+  gulp
+    .src(dirs.src.svg)
+    .pipe(
+      svgmin(function() {
+        return {
+          plugins: [
+            {
+              removeDoctype: true,
+            },
+            {
+              removeComments: true,
+            },
+            {
+              removeViewBox: false,
+            },
+            {
+              cleanupNumericValues: {
+                floatPrecision: 2,
+              },
+            },
+            {
+              convertColors: {
+                names2hex: true,
+                rgb2hex: true,
+              },
+            },
+            {
+              cleanupIDs: {
+                minify: true,
+              },
+            },
+          ],
+        };
+      })
+    )
     .pipe(gulp.dest(dirs.dist.images));
   done();
 }
 
 // Build SVG sprite
 function buildSVGSprite(done) {
-  gulp.src(dirs.src.svgSprite)
-    .pipe(svgmin(function() {
-      return {
-        plugins: [{
-          removeDoctype: true
-        }, {
-          removeComments: true
-        }, {
-          removeViewBox: false
-        }, {
-          cleanupNumericValues: {
-            floatPrecision: 2
-          }
-        }, {
-          convertColors: {
-            names2hex: true,
-            rgb2hex: true
-          }
-        }, {
-          cleanupIDs: {
-            minify: true
-          }
-        }]
-      }
-    }))
-    .pipe(cheerio({
-      run: function($) {
-        $('svg').attr('width', null).attr('height', null);
-      },
-      parserOptions: {
-        xmlMode: true
-      }
-    }))
-    .pipe(svgstore({
-      inlineSvg: true
-    }))
-    .pipe(cheerio({
-      run: function($) {
-        $('svg').attr('style', 'display: none');
-      },
-      parserOptions: {
-        xmlMode: true
-      }
-    }))
+  gulp
+    .src(dirs.src.svgSprite)
+    .pipe(
+      svgmin(function() {
+        return {
+          plugins: [
+            {
+              removeDoctype: true,
+            },
+            {
+              removeComments: true,
+            },
+            {
+              removeViewBox: false,
+            },
+            {
+              cleanupNumericValues: {
+                floatPrecision: 2,
+              },
+            },
+            {
+              convertColors: {
+                names2hex: true,
+                rgb2hex: true,
+              },
+            },
+            {
+              cleanupIDs: {
+                minify: true,
+              },
+            },
+          ],
+        };
+      })
+    )
+    .pipe(
+      cheerio({
+        run: function($) {
+          $('svg')
+            .attr('width', null)
+            .attr('height', null);
+        },
+        parserOptions: {
+          xmlMode: true,
+        },
+      })
+    )
+    .pipe(
+      svgstore({
+        inlineSvg: true,
+      })
+    )
+    .pipe(
+      cheerio({
+        run: function($) {
+          $('svg').attr('style', 'display: none');
+        },
+        parserOptions: {
+          xmlMode: true,
+        },
+      })
+    )
     .pipe(rename('sprite.svg'))
     .pipe(gulp.dest(dirs.dist.svgSprite));
   done();
@@ -237,7 +281,8 @@ function buildSVGSprite(done) {
 
 // Copy vendors
 function copyVendors(done) {
-  gulp.src(npmDist(), { base: './node_modules/' })
+  gulp
+    .src(npmDist(), { base: './node_modules/' })
     .pipe(gulp.dest(dirs.src.vendors))
     .pipe(gulp.dest(dirs.dist.vendors));
   done();
@@ -245,8 +290,7 @@ function copyVendors(done) {
 
 // Copy fonts
 function copyFonts(done) {
-  gulp.src(dirs.src.fonts)
-    .pipe(gulp.dest(dirs.dist.fonts));
+  gulp.src(dirs.src.fonts).pipe(gulp.dest(dirs.dist.fonts));
   done();
 }
 
@@ -274,7 +318,20 @@ exports.copyFavicon = copyFavicon;
 exports.buildSVG = buildSVG;
 exports.buildSVGSprite = buildSVGSprite;
 exports.copyVendors = copyVendors;
-const build = gulp.series(clean, copyVendors, gulp.parallel(buildHTML, buildStyles, buildJS, buildImages, copyFavicon, copyFonts, buildSVG, buildSVGSprite));
+const build = gulp.series(
+  clean,
+  copyVendors,
+  gulp.parallel(
+    buildHTML,
+    buildStyles,
+    buildJS,
+    buildImages,
+    copyFavicon,
+    copyFonts,
+    buildSVG,
+    buildSVGSprite
+  )
+);
 exports.build = build;
 
 // Default task

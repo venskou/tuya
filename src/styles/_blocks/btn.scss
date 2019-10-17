@@ -16,6 +16,10 @@
   &--green {
     color: $white;
     background-color: #7bb959;
-    background-image: linear-gradient(to top, rgba($dark-green, 0.42) 0%, rgba($light-green, 0.42) 100%);
+    background-image: linear-gradient(
+      to top,
+      rgba($dark-green, 0.42) 0%,
+      rgba($light-green, 0.42) 100%
+    );
   }
 }
