@@ -2,20 +2,27 @@
   "name": "tuya-website",
   "version": "1.0.0",
   "description": "Tuya.by website",
-  "scripts": {
-    "start": "gulp",
-    "build": "gulp build",
-    "server": "gulp server"
+  "homepage": "https://github.com/venskou/tuya-website#readme",
+  "bugs": {
+    "url": "https://github.com/venskou/tuya-website/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/venskou/tuya-website.git"
   },
   "author": "Mediatec Software http://www.mediatec.org <hello@mediatec.com>",
-  "bugs": {
-    "url": "https://github.com/venskou/tuya-website/issues"
+  "scripts": {
+    "build": "gulp build",
+    "server": "gulp server",
+    "start": "gulp"
   },
-  "homepage": "https://github.com/venskou/tuya-website#readme",
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "svg4everybody": "^2.1.9"
+  },
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
@@ -35,13 +42,8 @@
     "gulp-sass": "^4.0.2",
     "gulp-svgmin": "^2.2.0",
     "gulp-svgstore": "^7.0.1",
-    "gulp-uglify": "^3.0.2"
-  },
-  "dependencies": {
-    "normalize.css": "^8.0.1",
-    "svg4everybody": "^2.1.9"
-  },
-  "browserslist": [
-    "last 2 versions"
-  ]
+    "gulp-uglify": "^3.0.2",
+    "prettier": "^1.18.2",
+    "prettier-plugin-packagejson": "^2.0.1"
+  }
 }
