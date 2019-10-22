@@ -19,6 +19,7 @@ const svgmin = require('gulp-svgmin');
 const svgstore = require('gulp-svgstore');
 const cheerio = require('gulp-cheerio');
 const babel = require('gulp-babel');
+const eslint = require('gulp-eslint');
 
 // Config directories
 const dirs = {
@@ -128,6 +129,8 @@ function buildJS(done) {
   gulp
     .src(dirs.src.js)
     .pipe(plumber())
+    .pipe(eslint())
+    .pipe(eslint.format())
     .pipe(
       babel({
         presets: ['@babel/env'],
