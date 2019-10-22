@@ -13,8 +13,27 @@
   "author": "Mediatec Software http://www.mediatec.org <hello@mediatec.com>",
   "scripts": {
     "build": "gulp build",
+    "precommit": "lint-staged",
+    "prettier": "prettier \"**/*.*\" --write",
+    "lint": "eslint \"src/**/*.js\"",
+    "lint:fix": "eslint \"src/**/*.js\" --fix",
     "server": "gulp server",
     "start": "gulp"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.*": [
+      "prettier --write",
+      "git add"
+    ],
+    "src/**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "browserslist": [
     "last 2 versions"
@@ -27,11 +46,17 @@
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "browser-sync": "^2.26.7",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-cheerio": "^0.6.3",
     "gulp-cssnano": "^2.1.3",
+    "gulp-eslint": "^6.0.0",
     "gulp-htmlhint": "^2.2.1",
     "gulp-imagemin": "^6.1.0",
     "gulp-npm-dist": "^1.0.3",
@@ -43,6 +68,7 @@
     "gulp-svgmin": "^2.2.0",
     "gulp-svgstore": "^7.0.1",
     "gulp-uglify": "^3.0.2",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "prettier-plugin-packagejson": "^2.0.1"
   }
